@@ -36,7 +36,7 @@ const getMarkerIcon = (issue) => {
   });
 };
 
-function MapView({ reports = [] }) {
+function MapView({ reports = [], setReports }) {
   const [userLocation, setUserLocation] = useState(null);
 
   // 📍 Detect user location
@@ -56,9 +56,23 @@ function MapView({ reports = [] }) {
     }
   }, []);
 
+  // ✅ Auto-expire after 1 hour (3600000 ms)
+  const activeReports = reports.filter(
+    (report) =>
+      report.status === "active" &&
+      Date.now() - report.timestamp < 3600000
+  );
+
+  // ✅ Mark report as cleared
+  const handleClear = (index) => {
+    const updatedReports = [...reports];
+    updatedReports[index].status = "cleared";
+    setReports(updatedReports);
+  };
+
   return (
     <MapContainer
-        center={userLocation || [13.0827, 80.2707]} // Default to Chennai
+      center={userLocation || [13.0827, 80.2707]}
       zoom={12}
       scrollWheelZoom={true}
       zoomControl={true}
@@ -76,8 +90,8 @@ function MapView({ reports = [] }) {
         </Marker>
       )}
 
-      {/* 🚦 Report Markers */}
-      {reports.map((report, index) =>
+      {/* 🚦 Active Report Markers */}
+      {activeReports.map((report, index) =>
         report.lat && report.lng ? (
           <Marker
             key={index}
@@ -90,6 +104,19 @@ function MapView({ reports = [] }) {
               {report.location}
               <br />
               {report.description}
+              <br /><br />
+              <button
+                onClick={() => handleClear(index)}
+                style={{
+                  backgroundColor: "red",
+                  color: "white",
+                  border: "none",
+                  padding: "5px 10px",
+                  cursor: "pointer",
+                }}
+              >
+                Mark as Cleared
+              </button>
             </Popup>
           </Marker>
         ) : null
