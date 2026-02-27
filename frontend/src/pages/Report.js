@@ -25,6 +25,7 @@ const handleSubmit = (e) => {
     timestamp: new Date().toLocaleString(),
     lat: 13.0827 + (Math.random() - 0.5) * 0.02,
     lng: 80.2707 + (Math.random() - 0.5) * 0.02,
+
   status: "active"
   };
 
