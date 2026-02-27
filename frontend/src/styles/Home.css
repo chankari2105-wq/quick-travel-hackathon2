@@ -1,0 +1,59 @@
+.home-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.hero h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  color: #555;
+}
+
+.search-bar {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-bottom: 25px;
+  font-size: 14px;
+}
+
+.alert-card {
+  background: white;
+  padding: 20px;
+  border-radius: 14px;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  position: relative;
+}
+
+.alert-card h3 {
+  margin: 10px 0;
+}
+
+.badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  color: white;
+  font-weight: 600;
+}
+
+.accident { background: #dc2626; }
+.roadblock { background: #f59e0b; }
+.railway-crossing { background: #2563eb; }
+.public-event { background: #16a34a; }
+
+.noData {
+  text-align: center;
+  color: gray;
+}
