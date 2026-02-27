@@ -58,7 +58,7 @@ function MapView({ reports = [] }) {
 
   return (
     <MapContainer
-      center={[13.0827, 80.2707]} // Default center
+        center={userLocation || [13.0827, 80.2707]} // Default to Chennai
       zoom={12}
       scrollWheelZoom={true}
       zoomControl={true}
