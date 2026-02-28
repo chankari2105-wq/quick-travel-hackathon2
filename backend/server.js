@@ -1,23 +1,23 @@
-const express = require('express');
-const cors = require('cors');
-require('dotenv').config();
-const connectDB = require('./config/db');
+const express = require("express");
+const cors = require("cors");
+require("dotenv").config();
 
 const app = express();
-
-connectDB();
 
 app.use(cors());
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.send("Quick Travel Backend Running 🚦");
+// TEST ROUTE
+app.get("/api/report", (req, res) => {
+  res.json([]);
 });
 
-app.use('/api/report', require('./routes/reportRoutes'));
+// POST ROUTE
+app.post("/api/report", (req, res) => {
+  console.log(req.body);
+  res.json({ message: "Report saved", data: req.body });
+});
 
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+app.listen(5000, () => {
+  console.log("Server running at http://localhost:5000");
 });
